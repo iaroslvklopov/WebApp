@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Менять местами";
+}
+
+<div id="wrapper">
+	<div class="container">
+
+		<!-- start: Contact Info -->
+		<div class="span6">
+			<div class="title"><h3>Контакты</h3></div>
+			<p>
+				<b>Акцент на результат</b>
+			</p>
+			<p>
+				Пн-Пт: 9:00-19:00
+			</p>
+			<p>
+				ул. Мухамедьярова 31А, 3 этаж, оф. 301-305
+			</p>
+			<p>
+				8 843 207-11-58
+			</p>
+			<p>
+				my@aaccent.ru
+			</p>
+			<p>
+			</p>
+			<p>
+				Оставьте заявку на бесплатную консультацию!
+			</p>
+		</div>
+		<!-- end: Contact Info -->
+		<!-- start: Contact Form -->
+		<div class="span4">
+			<div class="title"><h3>Оставить заявку</h3></div>
+
+			<!-- start: Contact Form -->
+			<div id="contact-form">
+
+				<form action="contact.php" method="get" name="contactForm" id="contactForm">
+					<fieldset>
+						<div class="group"><input name="contactName" type="text" id="contactName" placeholder="Имя" value="" minLength="2" required /></div>
+						<div><input name="contactNumber" type="text" id="contactNumber" placeholder="Телефон" value="" minLength="2" required /></div>
+						<label>Выберите время для звонка:</label>
+						<div class="form_radio_btn">
+							<input id="radio-1" type="radio" name="radio" value="1" checked>
+							<label for="radio-1">10:00-13:00</label>
+						</div>
+
+						<div class="form_radio_btn">
+							<input id="radio-2" type="radio" name="radio" value="2">
+							<label for="radio-2">13:00-16:00</label>
+						</div>
+
+						<div class="form_radio_btn">
+							<input id="radio-3" type="radio" name="radio" value="3">
+							<label for="radio-3">16:00-19:00</label>
+						</div>
+						<button onclick="alert('Форма отправлена');return true;" class="submitform">Отправить</button>
+					</fieldset>
+				</form> <!-- Form End -->
+			</div>
+			<!-- end: Contact Form -->
+
+		</div>
+		<!-- end: Container -->
+
+		<div>
+			<img src="~/img/map.png">
+		</div>
+	</div>
+	<link href="~/css/bootstrap.css" rel="stylesheet">
+	<link href="~/css/style.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,80">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Serif">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Economica:700,400italic">
