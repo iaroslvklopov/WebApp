@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MySqlConnector;
 using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -49,225 +48,41 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public IActionResult TaskFour()
-        {
-            return View();
-        }
-
-
-        private int _counter = 0;
-        [HttpPost]
-        public IActionResult TaskFirst(string FirstCatet, string SecondCatet)
-        {
-           ViewBag.H = Math.Sqrt(Math.Pow(Convert.ToInt32(FirstCatet), 2) +Math.Pow(Convert.ToInt32(SecondCatet), 2));
-            return View();
-        }
+        
+        
 
         [HttpPost]
-        public IActionResult TaskSecond(string firstQuestion, string
-secondQuestion, string thirdQuestion)
+        public IActionResult TaskThird(string contactName, string contactNumber, string radio)
         {
-            if (firstQuestion == null || secondQuestion == null || thirdQuestion == null)
-            {
-                return RedirectToAction("Index");
-            }
-            if (firstQuestion == "1")
-            {
-                _counter++;
-            }
-            if (secondQuestion == "5")
-            {
-               _counter++;
-            }
-            if (thirdQuestion == "9")
-            {
-               _counter++;
-            }
-            ViewBag.Result = Convert.ToInt32(_counter);
-            return View();
-        }
+			MySqlConnection conn = new MySqlConnection("server=127.0.0.1;port=3306;database=mydb;user id=root;password=1234;charset=utf8;Pooling=false;SslMode=None;");
+			try
+			{
+				if (conn.State == ConnectionState.Closed)
+				{
+					conn.Open();
+					MySqlCommand cmd1 = new MySqlCommand("select max(manager_id) from manager", conn);
+					int log = Convert.ToInt32(cmd1.ExecuteScalar());
+					Random r = new Random();
+					int idd = r.Next(1, log+1);
+					string time = "";
+                    if (radio == "1") { time = "10:00-13:00"; }
+					if (radio == "2") { time = "13:00-16:00"; }
+					if (radio == "3") { time = "16:00-19:00"; }
+					MySqlCommand cmd = new MySqlCommand("insert into zayavka (name, number, time, manager_id) values(@name, @number, @time, @manager_id);", conn);
+					cmd.Parameters.AddWithValue("@name", contactName);
+					cmd.Parameters.AddWithValue("@number", contactNumber);
+					cmd.Parameters.AddWithValue("@time", time);
+					cmd.Parameters.AddWithValue("@manager_id", idd);
+					cmd.ExecuteNonQuery();
 
-        [HttpPost]
-        public IActionResult TaskThird(string First, string Second)
-        {
-            ViewBag.one = Second;
-            ViewBag.two = First;
-            return View();
-        }
+				}
+				return RedirectToAction("TaskThird");
+			}
+			catch (MySqlException ex)
+			{
+				return Content("<script language='javascript' type='text/javascript'>alert(ex.ToString());</script>");
+			}
 
-        [HttpPost]
-        public IActionResult TaskFour(string Firstpr, string Secondpr)
-        {
-            int k = 0;
-            foreach (char c in Firstpr)
-            {
-                if(Convert.ToString(c) == "н" || Convert.ToString(c) == "Н")
-                {
-                    k++;
-
-                }
-            }
-            foreach (char c in Secondpr)
-            {
-                if (Convert.ToString(c) == "н" || Convert.ToString(c) == "Н")
-                {
-                    k++;
-
-                }
-            }
-            ViewBag.kol = k;
-            return View();
-        }
-
-        public IActionResult TaskFive()
-        {
-            string x = "";
-            int n = 0;
-            int sred = 0;
-            int y = 0;
-            Random r = new Random();
-
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t1 = x;
-            ViewBag.sr1 = sred/y;
-
-            x = "";
-            sred = 0;
-            y = 0;
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t2 = x;
-            ViewBag.sr2 = sred / y;
-
-            x = "";
-            sred = 0;
-            y = 0;
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t3 = x;
-            ViewBag.sr3 = sred / y;
-
-            x = "";
-            sred = 0;
-            y = 0;
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t4 = x;
-            ViewBag.sr4 = sred / y;
-
-            x = "";
-            sred = 0;
-            y = 0;
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t5 = x;
-            ViewBag.sr5 = sred / y;
-
-            x = "";
-            sred = 0;
-            y = 0;
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t6 = x;
-            ViewBag.sr6 = sred / y;
-
-            x = "";
-            sred = 0;
-            y = 0;
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t7 = x;
-            ViewBag.sr7 = sred / y;
-
-            x = "";
-            sred = 0;
-            y = 0;
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t8 = x;
-            ViewBag.sr8 = sred / y;
-
-            x = "";
-            sred = 0;
-            y = 0;
-            for (int j = 0; j < 9; j++)
-            {
-                n = r.Next(10, 30);
-                if (n % 2 == 0)
-                {
-                    sred = sred + n;
-                    y++;
-                }
-                x = x + n + " ";
-            }
-            ViewBag.t9 = x;
-            ViewBag.sr9 = sred / y;
-            return View();
-        }
+		}
     }
 }

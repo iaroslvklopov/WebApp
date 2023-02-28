@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Менять местами";
+    ViewData["Title"] = "Оставить заявку";
 }
 
 <div id="wrapper">
@@ -37,7 +37,7 @@
 			<!-- start: Contact Form -->
 			<div id="contact-form">
 
-				<form action="contact.php" method="get" name="contactForm" id="contactForm">
+				<form method="post" name="contactForm" id="contactForm">
 					<fieldset>
 						<div class="group"><input name="contactName" type="text" id="contactName" placeholder="Имя" value="" minLength="2" required /></div>
 						<div><input name="contactNumber" type="text" id="contactNumber" placeholder="Телефон" value="" minLength="2" required /></div>
@@ -56,7 +56,7 @@
 							<input id="radio-3" type="radio" name="radio" value="3">
 							<label for="radio-3">16:00-19:00</label>
 						</div>
-						<button onclick="alert('Форма отправлена');return true;" class="submitform">Отправить</button>
+						<input type="submit" value="Отправить"/>
 					</fieldset>
 				</form> <!-- Form End -->
 			</div>
