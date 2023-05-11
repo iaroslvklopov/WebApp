@@ -56,19 +56,34 @@
 							<input id="radio-3" type="radio" name="radio" value="3">
 							<label for="radio-3">16:00-19:00</label>
 						</div>
-						<input type="submit" value="Отправить"/>
+						<input type="submit" name="type" value="Отправить" />
 					</fieldset>
-				</form> <!-- Form End -->
+				</form>
 			</div>
-			<!-- end: Contact Form -->
 
 		</div>
-		<!-- end: Container -->
+		<div class="span6">
+			<div class="title"><h3>Проверить статус</h3></div>
+
+			<div id="contact-form">
+
+				<form method="post" name="contactForm1" id="contactForm1">
+					<fieldset>
+						<div><input name="contactNumber" type="text" id="contactNumber" placeholder="Телефон" value="" minLength="2" required /></div>
+						<input type="submit" name="type" value="Узнать" />
+						<br />
+						<b><h3>@ViewBag.H</h3></b>
+					</fieldset>
+				</form>
+			</div>
+		</div>
 
 		<div>
 			<img src="~/img/map.png">
 		</div>
 	</div>
+
+</div>
 	<link href="~/css/bootstrap.css" rel="stylesheet">
 	<link href="~/css/style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,80">
