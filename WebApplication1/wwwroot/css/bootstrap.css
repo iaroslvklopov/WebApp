@@ -932,8 +932,8 @@ input[type="reset"],
 input[type="button"] {
 	display: inline-block;
 	font: 16px/30px "raleway-heavy", sans-serif;
-	padding: 10px 60px;
-	margin: 16px 3px 6px 150px;
+	padding: 10px 10px;
+	margin: 16px 3px 6px 10px;
 	background: #a6075b;
 	color: #fff;
 	text-decoration: none;
@@ -951,14 +951,14 @@ input[type="button"] {
 	transition: all 0.3s ease-in-out;
 }
 
-.button:hover,
-button:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover {
-	color: #FFFFFF;
-	background: #e64e04;
-}
+    .button:hover,
+    button:hover,
+    input[type="submit"]:hover,
+    input[type="reset"]:hover,
+    input[type="button"]:hover {
+        color: #FFFFFF;
+        background: #d1158c;
+    }
 
 label {
   display: block;
