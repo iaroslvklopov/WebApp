@@ -57,8 +57,8 @@ namespace WebApplication1.Controllers
 			MySqlConnection conn = new MySqlConnection("server=127.0.0.1;port=3306;database=mydb;user id=root;password=1234;charset=utf8;Pooling=false;SslMode=None;");
 			if (type == "Отправить")
 			{
-				//try
-				//{
+				try
+				{
 					if (conn.State == ConnectionState.Closed)
 					{
 						conn.Open();
@@ -77,21 +77,21 @@ namespace WebApplication1.Controllers
 						cmd.Parameters.AddWithValue("@time", time);
 					    cmd.Parameters.AddWithValue("@timenow", timenow);
 					    cmd.Parameters.AddWithValue("@manager_id", idd);
-						cmd.Parameters.AddWithValue("@status", "ожидает звонка");
+						cmd.Parameters.AddWithValue("@status", "ожидание звонка");
 						cmd.ExecuteNonQuery();
 
 					}
 					return RedirectToAction("TaskThird");
-				//}
-				//catch (MySqlException ex)
-				//{
-				//	return Content("<script language='javascript' type='text/javascript'>alert(ex.ToString());</script>");
-				//}
+				}
+				catch (MySqlException ex)
+				{
+					return Content("<script language='javascript' type='text/javascript'>alert(ex.ToString());</script>");
+				}
 			}
 			if (type == "Узнать")
 			{
-				//try
-				//{
+				try
+				{
 					if (conn.State == ConnectionState.Closed)
 					{
 						conn.Open();
@@ -109,12 +109,13 @@ namespace WebApplication1.Controllers
 					    reader.Close();
 						ViewBag.H = line;
 					}
-				//}
-				//catch { Content("<script language='javascript' type='text/javascript'>alert(ex.ToString());</script>"); }
+				}
+				catch { Content("<script language='javascript' type='text/javascript'>alert(ex.ToString());</script>"); }
 			}
 			return View();
 		}
-
+		
 	}
 
 }
+
